@@ -37,6 +37,55 @@ app.post("/hotels",(req,res)=>{
 
 })
 
+app.put("/hotels/:id",(req,res)=>{
+    
+    const hotelsQuery = req.query.name
+    const hotelID = req.params.id
+   
+    const findId = hotelInfo.findIndex(elem => elem.id === parseInt(hotelID))
+      const hotelName=hotelInfo[findId]
+      hotelName.name=hotelsQuery
+    
+    hotelInfo.splice(findId,1,hotelName)
+
+
+
+     console.log("id", hotelName);
+     console.log("Query", hotelsQuery);
+        
+
+    // hotelInfo.push(hotelsQuery)
+
+
+        
+        res.json({
+            status:"ok",
+            message:"data update",
+            data:findId
+        })
+        
+
+})
+
+app.delete("/hotels/:id",(req,res)=>{
+    
+    const hotelsQuery = req.query.name
+    const hotelID = req.params.id
+   
+    const findId = hotelInfo.filter(elem => elem.id !== parseInt(hotelID))
+      
+        console.log(findId)
+        res.json({
+            status:"ok",
+            message:"data update",
+            data:findId
+        })
+        
+
+})
+
+
+
 
 
 
